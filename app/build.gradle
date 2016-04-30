@@ -1,4 +1,50 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'uno-base'
+
+    publishedGroupId = 'kim.uno.base'
+    libraryName = 'UnoBase'
+    artifact = 'uno-base'
+
+    libraryDescription = 'uno-base-1.0.0'
+
+    siteUrl = 'https://github.com/uno-dow/UnoBase'
+    gitUrl = 'https://github.com/uno-dow/UnoBase.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'ikmuwn'
+    developerName = 'uno kim'
+    developerEmail = 'ikmuwn@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+bintray {
+    user = 'ikmuwn'
+    key = '33f652b135520009d11fd8921aaf9d44e68a7328'
+    pkg {
+        repo = 'maven'
+        name = 'uno-base' // the name of the package in BinTray
+
+        version {
+            name = 'UnoBase' // the name of your library project
+            desc = 'uno-base-1.0.0'
+            vcsTag = '1.0.0' // the version
+        }
+
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/uno-dos/UnoBase.git' // your GitHub repo
+        websiteUrl = 'https://github.com/uno-dos/UnoBase' // your website or whatever has documentation
+    }
+    configurations = ['archives']
+}
 
 android {
     compileSdkVersion 23
@@ -8,7 +54,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
     buildTypes {
         release {
