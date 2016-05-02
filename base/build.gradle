@@ -13,6 +13,7 @@ buildscript {
 }
 
 def releaseVersion = '1.0.0'
+group = 'kim.uno.base'
 version = releaseVersion
 
 bintray {
