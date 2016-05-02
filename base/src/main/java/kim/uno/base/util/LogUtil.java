@@ -6,7 +6,7 @@ import android.util.Log;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import kim.uno.BuildConfig;
+import kim.uno.base.BuildConfig;
 
 public class LogUtil {
 

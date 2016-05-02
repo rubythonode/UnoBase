@@ -29,7 +29,7 @@ public class BaseRecyclerView extends RecyclerView {
 
     public void setTopIndicator(View view) {
         mTopIndicator = view;
-        mTopIndicator.setOnClickListener(new View.OnClickListener() {
+        mTopIndicator.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 scrollToTop(true);

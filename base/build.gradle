@@ -2,48 +2,38 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'uno-base'
-
-    publishedGroupId = 'kim.uno.base'
-    libraryName = 'UnoBase'
-    artifact = 'uno-base'
-
-    libraryDescription = 'uno-base-1.0.0'
-
-    siteUrl = 'https://github.com/uno-dow/UnoBase'
-    gitUrl = 'https://github.com/uno-dow/UnoBase.git'
-
-    libraryVersion = '1.0.0'
-
-    developerId = 'ikmuwn'
-    developerName = 'uno kim'
-    developerEmail = 'ikmuwn@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
+        classpath "com.github.dcendents:android-maven-gradle-plugin:1.3"
+    }
 }
+
+def releaseVersion = '1.0.0'
+version = releaseVersion
 
 bintray {
     user = 'ikmuwn'
     key = '33f652b135520009d11fd8921aaf9d44e68a7328'
+    configurations = ['archives']
+
     pkg {
         repo = 'maven'
-        name = 'uno-base' // the name of the package in BinTray
+        name = 'base' // the name of the package in BinTray
 
         version {
-            name = 'UnoBase' // the name of your library project
-            desc = 'uno-base-1.0.0'
-            vcsTag = '1.0.0' // the version
+            name = releaseVersion // the name of your library project
+            desc = releaseVersion
+            vcsTag = releaseVersion // the version
         }
 
         licenses = ['Apache-2.0']
         vcsUrl = 'https://github.com/uno-dos/UnoBase.git' // your GitHub repo
         websiteUrl = 'https://github.com/uno-dos/UnoBase' // your website or whatever has documentation
     }
-    configurations = ['archives']
 }
 
 android {
@@ -54,7 +44,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0.0"
+        versionName releaseVersion
     }
     buildTypes {
         release {

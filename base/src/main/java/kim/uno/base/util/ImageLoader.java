@@ -28,7 +28,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import kim.uno.BuildConfig;
+import kim.uno.base.BuildConfig;
 
 import static com.bumptech.glide.request.animation.ViewPropertyAnimation.Animator;
 

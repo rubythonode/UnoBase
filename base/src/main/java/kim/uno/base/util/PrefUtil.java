@@ -3,7 +3,7 @@ package kim.uno.base.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import kim.uno.R;
+import kim.uno.base.R;
 
 import static android.content.SharedPreferences.Editor;
 
