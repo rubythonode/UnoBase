@@ -7,7 +7,6 @@ import java.util.*
 private val DEFAULT_FORMAT = "yyyyMMddHHmmssSSS"
 
 fun parse(date: String?, fromFormat: String = DEFAULT_FORMAT): Date? {
-
     if (date == null || date.trim { it <= ' ' }.length == 0) return null
 
     try {
@@ -29,12 +28,16 @@ fun format(date: String, fromFormat: String, toFormat: String): String? {
 }
 
 fun format(date: Date?, toFormat: String): String? {
-    var result: String? = null
-    if (date != null) {
+    if (date == null) return null
+
+    try {
         val simpleDateFormat = SimpleDateFormat(toFormat, Locale.KOREA)
-        result = simpleDateFormat.format(date)
+        return simpleDateFormat.format(date)
+    } catch (e: ParseException) {
+        logE(e)
     }
-    return result
+
+    return null
 }
 
 val now: String?

@@ -6,19 +6,19 @@ import kim.uno.base.R
 
 private var sharedPreferences: SharedPreferences? = null
 
-private fun getPrefs(context: Context): SharedPreferences {
+private fun getPreferences(context: Context): SharedPreferences {
     if (sharedPreferences == null) sharedPreferences = context.getSharedPreferences(context.getString(R.string.base_app_name), Context.MODE_APPEND)
     return sharedPreferences as SharedPreferences
 }
 
-fun getPreferencesString(context: Context, key: String, defValue: String? = null): String = getPrefs(context).getString(key, defValue)
-fun getPreferencesBoolean(context: Context, key: String, defValue: Boolean = false): Boolean = getPrefs(context).getBoolean(key, defValue)
-fun getPreferencesFloat(context: Context, key: String, defValue: Float = 0f): Float = getPrefs(context).getFloat(key, defValue)
-fun getPreferencesInt(context: Context, key: String, defValue: Int = 0): Int = getPrefs(context).getInt(key, defValue)
-fun getPreferencesLong(context: Context, key: String, defValue: Long = 0): Long = getPrefs(context).getLong(key, defValue)
+fun getStringPreference(context: Context, key: String, defValue: String? = null): String = getPreferences(context).getString(key, defValue)
+fun getBooleanPreference(context: Context, key: String, defValue: Boolean = false): Boolean = getPreferences(context).getBoolean(key, defValue)
+fun getFloatPreference(context: Context, key: String, defValue: Float = 0f): Float = getPreferences(context).getFloat(key, defValue)
+fun getIntPreference(context: Context, key: String, defValue: Int = 0): Int = getPreferences(context).getInt(key, defValue)
+fun getLongPreference(context: Context, key: String, defValue: Long = 0): Long = getPreferences(context).getLong(key, defValue)
 
-fun putPreferences(context: Context, key: String, value: Any): Boolean {
-    val editor = getPrefs(context).edit()
+fun putPreference(context: Context, key: String, value: Any): Boolean {
+    val editor = getPreferences(context).edit()
     if (value is String) editor.putString(key, value)
     else if (value is Boolean) editor.putBoolean(key, value)
     else if (value is Int) editor.putInt(key, value)
@@ -27,12 +27,12 @@ fun putPreferences(context: Context, key: String, value: Any): Boolean {
     return editor.commit()
 }
 
-fun removePreferences(context: Context, key: String) {
-    getPrefs(context).edit().remove(key)
-    getPrefs(context).edit().commit()
+fun removePreference(context: Context, key: String) {
+    getPreferences(context).edit().remove(key)
+    getPreferences(context).edit().commit()
 }
 
 fun clearPreferences(context: Context) {
-    getPrefs(context).edit().clear()
-    getPrefs(context).edit().commit()
+    getPreferences(context).edit().clear()
+    getPreferences(context).edit().commit()
 }
