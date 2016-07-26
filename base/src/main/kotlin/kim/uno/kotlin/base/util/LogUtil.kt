@@ -5,44 +5,44 @@ import android.util.Log
 import java.io.PrintWriter
 import java.io.StringWriter
 
-var LOGCAT_ENABLE: Boolean = false
-val LOGCAT_TAG: String = "UNO"
+var logEnable: Boolean = false
+var logTag: String = "UNO"
 
 fun logD(log: String) {
-    if (LOGCAT_ENABLE) Log.d(LOGCAT_TAG, getLogTrace(log))
+    if (logEnable) Log.d(logTag, getLogTrace(log))
 }
 
 fun logI(log: String) {
-    if (LOGCAT_ENABLE) Log.i(LOGCAT_TAG, getLogTrace(log))
+    if (logEnable) Log.i(logTag, getLogTrace(log))
 }
 
 fun logE(log: String) {
-    if (LOGCAT_ENABLE) Log.e(LOGCAT_TAG, getLogTrace(log))
+    if (logEnable) Log.e(logTag, getLogTrace(log))
 }
 
 fun LogE(e: Exception) {
-    if (LOGCAT_ENABLE) Log.e(LOGCAT_TAG, getLogTrace(getStringFromThrowable(e)))
+    if (logEnable) Log.e(logTag, getLogTrace(getStringFromThrowable(e)))
 }
 
 fun logE(e: Throwable) {
-    if (LOGCAT_ENABLE) Log.e(LOGCAT_TAG, getLogTrace(getStringFromThrowable(e)))
+    if (logEnable) Log.e(logTag, getLogTrace(getStringFromThrowable(e)))
 }
 
 fun simpleI(log: String) {
-    if (LOGCAT_ENABLE) {
-        Log.i(LOGCAT_TAG, log)
+    if (logEnable) {
+        Log.i(logTag, log)
     }
 }
 
 fun simpleE(log: String) {
-    if (LOGCAT_ENABLE) {
-        Log.e(LOGCAT_TAG, log)
+    if (logEnable) {
+        Log.e(logTag, log)
     }
 }
 
 fun simpleD(log: String) {
-    if (LOGCAT_ENABLE) {
-        Log.d(LOGCAT_TAG, log)
+    if (logEnable) {
+        Log.d(logTag, log)
     }
 }
 
