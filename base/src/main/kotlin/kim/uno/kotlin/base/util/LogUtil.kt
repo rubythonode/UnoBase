@@ -2,8 +2,6 @@ package kim.uno.kotlin.base.util
 
 import android.content.Context
 import android.util.Log
-import kim.uno.base.util.DateUtil
-import kim.uno.base.util.PrefUtil
 import java.io.PrintWriter
 import java.io.StringWriter
 
@@ -71,9 +69,9 @@ private fun getStringFromThrowable(e: Throwable): String {
 }
 
 fun saveCrashlog(context: Context, ex: Throwable) {
-    val title = DateUtil.getNow("yyyy.MM.dd HH:mm:ss") + "\n"
-    var recordLog: String? = kim.uno.base.util.PrefUtil.getString(context, "crash")                        // 누적된 로그
+    val title = getNow("yyyy.MM.dd HH:mm:ss") + "\n"
+    var recordLog: String? = getStringPreference(context, "crash")                        // 누적된 로그
     val errorLog = title + getStringFromThrowable(ex) + "\n"                    // 현재 로그
     recordLog = if (recordLog == null) errorLog else recordLog + errorLog                // merge
-    PrefUtil.put(context, "crash", recordLog)
+    putPreference(context, "crash", recordLog)
 }

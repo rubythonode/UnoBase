@@ -5,10 +5,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.GlideBuilder
 import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory
-import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.module.GlideModule
-import kim.uno.base.util.GlideUrlLoader
-import java.io.InputStream
 
 class GlideConfiguration : GlideModule {
 
@@ -18,7 +15,7 @@ class GlideConfiguration : GlideModule {
     }
 
     override fun registerComponents(context: Context, glide: Glide) {
-        glide.register(GlideUrl::class.java, InputStream::class.java, GlideUrlLoader.Factory())
+//        glide.register(GlideUrl::class.java, InputStream::class.java, GlideUrlLoader.Factory())
     }
 
 }
