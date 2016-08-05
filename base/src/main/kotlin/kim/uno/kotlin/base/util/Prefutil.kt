@@ -4,35 +4,52 @@ import android.content.Context
 import android.content.SharedPreferences
 import kim.uno.base.R
 
-private var sharedPreferences: SharedPreferences? = null
+class PrefUtil constructor(context: Context) {
 
-private fun getPreferences(context: Context): SharedPreferences {
-    if (sharedPreferences == null) sharedPreferences = context.getSharedPreferences(context.getString(R.string.base_app_name), Context.MODE_APPEND)
-    return sharedPreferences as SharedPreferences
-}
+    private val sharedPreferences: SharedPreferences
 
-fun getStringPreference(context: Context, key: String, defValue: String? = null): String = getPreferences(context).getString(key, defValue)
-fun getBooleanPreference(context: Context, key: String, defValue: Boolean = false): Boolean = getPreferences(context).getBoolean(key, defValue)
-fun getFloatPreference(context: Context, key: String, defValue: Float = 0f): Float = getPreferences(context).getFloat(key, defValue)
-fun getIntPreference(context: Context, key: String, defValue: Int = 0): Int = getPreferences(context).getInt(key, defValue)
-fun getLongPreference(context: Context, key: String, defValue: Long = 0): Long = getPreferences(context).getLong(key, defValue)
+    init {
+        sharedPreferences = context.getSharedPreferences(context.getString(R.string.base_app_name), Context.MODE_APPEND)
+    }
 
-fun putPreference(context: Context, key: String, value: Any): Boolean {
-    val editor = getPreferences(context).edit()
-    if (value is String) editor.putString(key, value)
-    else if (value is Boolean) editor.putBoolean(key, value)
-    else if (value is Int) editor.putInt(key, value)
-    else if (value is Long) editor.putLong(key, value)
-    else if (value is Float) editor.putFloat(key, value)
-    return editor.commit()
-}
+    fun getString(key: String, defValue: String? = null): String = sharedPreferences.getString(key, defValue)
 
-fun removePreference(context: Context, key: String) {
-    getPreferences(context).edit().remove(key)
-    getPreferences(context).edit().commit()
-}
+    fun getBoolean(key: String, defValue: Boolean = false): Boolean = sharedPreferences.getBoolean(key, defValue)
 
-fun clearPreferences(context: Context) {
-    getPreferences(context).edit().clear()
-    getPreferences(context).edit().commit()
+    fun getFloat(key: String, defValue: Float = 0f): Float = sharedPreferences.getFloat(key, defValue)
+
+    fun getInt(key: String, defValue: Int = 0): Int = sharedPreferences.getInt(key, defValue)
+
+    fun getLong(key: String, defValue: Long = 0): Long = sharedPreferences.getLong(key, defValue)
+
+    fun put(key: String, value: Any): Boolean {
+        val editor = sharedPreferences.edit()
+        if (value is String) editor.putString(key, value)
+        else if (value is Boolean) editor.putBoolean(key, value)
+        else if (value is Int) editor.putInt(key, value)
+        else if (value is Long) editor.putLong(key, value)
+        else if (value is Float) editor.putFloat(key, value)
+        return editor.commit()
+    }
+
+    fun remove(key: String) {
+        sharedPreferences.edit().remove(key)
+        sharedPreferences.edit().commit()
+    }
+
+    fun clear() {
+        sharedPreferences.edit().clear()
+        sharedPreferences.edit().commit()
+    }
+
+    companion object {
+        private var instance: PrefUtil? = null
+
+        @JvmStatic
+        fun getInstance(context: Context): PrefUtil? {
+            if (instance == null) instance = PrefUtil(context.applicationContext)
+            return instance
+        }
+    }
+
 }

@@ -7,15 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import kim.uno.kotlin.base.item.RecyclerItem
 
-abstract class BaseViewHolder<T : RecyclerItem>(val adapter: BaseRecyclerAdapter<T>, itemView: View) : RecyclerView.ViewHolder(itemView) {
+abstract class BaseViewHolder<T : RecyclerItem>(open val adapter: BaseRecyclerAdapter<T>, itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     constructor(adapter: BaseRecyclerAdapter<T>, parent: ViewGroup, resId: Int) : this(adapter, LayoutInflater.from(adapter.context).inflate(resId, parent, false))
 
-    fun onBindView(item: T?, position: Int) {
+    open fun onBindView(item: T?, position: Int) {
 
     }
 
     protected val context: Context = adapter.context
-    fun getItem(): T? = adapter!!.getItem(adapterPosition)
+    fun getItem(): T? = adapter?.getItem(adapterPosition)
 
 }

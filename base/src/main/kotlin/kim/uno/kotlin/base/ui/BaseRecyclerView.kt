@@ -7,7 +7,7 @@ import android.os.Build
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.View
-import kim.uno.kotlin.base.util.logE
+import kim.uno.kotlin.base.util.LogUtil
 
 open class BaseRecyclerView : RecyclerView {
 
@@ -19,7 +19,7 @@ open class BaseRecyclerView : RecyclerView {
 
     fun setTopIndicator(view: View) {
         mTopIndicator = view
-        mTopIndicator!!.setOnClickListener { scrollToTop(true) }
+        mTopIndicator?.setOnClickListener { scrollToTop(true) }
         updateTopIndicator()
     }
 
@@ -44,31 +44,30 @@ open class BaseRecyclerView : RecyclerView {
     }
 
     fun setTopIndicatorVisibility(isVisible: Boolean) {
+        if (mTopIndicator == null) return
+        var indicator = mTopIndicator as View
+
         try {
-            if (isVisible && mTopIndicator!!.visibility == View.VISIBLE) return
-            if (!isVisible && mTopIndicator!!.visibility != View.VISIBLE) return
+            if (isVisible && indicator.visibility == View.VISIBLE) return
+            if (!isVisible && indicator.visibility != View.VISIBLE) return
 
             if (isVisible) {
-                mTopIndicator!!.visibility = View.VISIBLE
-                mTopIndicator!!.alpha = 0f
-                mTopIndicator!!.animate().alpha(1f).setDuration(150).setListener(null)
+                indicator.visibility = View.VISIBLE
+                indicator.alpha = 0f
+                indicator.animate().alpha(1f).setDuration(150).setListener(null)
             } else {
-                mTopIndicator!!.animate().alpha(0f).setDuration(150).setListener(object : AnimatorListenerAdapter() {
+                indicator.animate().alpha(0f).setDuration(150).setListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationEnd(animation: Animator) {
-                        mTopIndicator!!.visibility = View.GONE
+                        indicator.visibility = View.GONE
                     }
                 })
             }
         } catch (e: Exception) {
-            logE(e)
+            LogUtil.e(e)
         }
 
     }
 
     override fun isAttachedToWindow(): Boolean = if (Build.VERSION.SDK_INT >= 19) super.isAttachedToWindow() else handler != null
-
-    override fun getAdapter(): BaseRecyclerAdapter<*> {
-        return super.getAdapter() as BaseRecyclerAdapter<*>
-    }
 
 }

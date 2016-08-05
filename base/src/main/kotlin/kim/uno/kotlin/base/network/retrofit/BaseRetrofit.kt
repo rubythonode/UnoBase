@@ -1,4 +1,4 @@
-package kim.uno.kotlin.base.network
+package kim.uno.kotlin.base.network.retrofit
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

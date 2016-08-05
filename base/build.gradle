@@ -3,16 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
-        classpath "com.github.dcendents:android-maven-gradle-plugin:1.3"
-    }
-}
-
 def releaseVersion = '1.0.5'
 group = 'kim.uno.base'
 version = releaseVersion

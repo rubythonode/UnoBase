@@ -8,7 +8,7 @@ import java.util.*
 
 abstract class BaseRecyclerAdapter<T : RecyclerItem>(val context: Context) : RecyclerView.Adapter<BaseViewHolder<T>>() {
 
-    private var mItems: ArrayList<T> = ArrayList()
+    private var mItems: ArrayList<T>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, type: Int): BaseViewHolder<T> = onCreateNewHolder(parent, type)
 
@@ -18,41 +18,51 @@ abstract class BaseRecyclerAdapter<T : RecyclerItem>(val context: Context) : Rec
         holder.onBindView(getItem(position), position)
     }
 
-    override fun getItemViewType(position: Int): Int = getItem(position)!!.getViewType()
+    override fun getItemViewType(position: Int): Int = getItem(position)?.getViewType()?: 0
 
     override fun getItemId(position: Int): Long = position.toLong()
 
-    override fun getItemCount(): Int = mItems!!.size
+    override fun getItemCount(): Int = mItems?.size?: 0
 
-    fun getItem(position: Int): T? = mItems.getOrNull(position)
+    fun getItem(position: Int): T? = mItems?.getOrNull(position)
 
-    fun setItems(items: ArrayList<T>, notify: Boolean = true) {
+    fun setItems(items: ArrayList<T>) = setItems(items, true)
+
+    open fun setItems(items: ArrayList<T>, notify: Boolean) {
         mItems = items
         if (notify) {
             notifyDataSetChanged()
         }
     }
 
-    fun addItems(items: ArrayList<T>, position: Int = Integer.MAX_VALUE, notify: Boolean = true) {
+    fun addItems(items: ArrayList<T>) = addItems(items, Integer.MAX_VALUE)
+
+    fun addItems(items: ArrayList<T>, notify: Boolean) = addItems(items, Integer.MAX_VALUE, notify)
+
+    fun addItems(items: ArrayList<T>, position: Int) = addItems(items, position, true)
+
+    open fun addItems(items: ArrayList<T>, position: Int, notify: Boolean) {
         if (mItems == null) mItems = ArrayList<T>()
 
-        val mergeItems = ArrayList(mItems!!)
-        mergeItems.addAll(if (position < 0) 0 else if (position > mItems!!.size) mItems!!.size else position, items)
+        val mergeItems = ArrayList(mItems?: ArrayList<T>())
+        mergeItems.addAll(if (position < 0) 0 else if (position > itemCount) itemCount else position, items)
         mItems = mergeItems
         if (notify) {
-            notifyItemRangeInserted(mItems!!.size - items.size, mItems!!.size)
+            notifyItemRangeInserted(itemCount - items.size, itemCount)
         }
     }
 
-    fun addItem(item: T, position: Int = Integer.MAX_VALUE) {
+    fun addItem(item: T) = addItem(item, Integer.MAX_VALUE)
+
+    open fun addItem(item: T, position: Int) {
         if (mItems == null) mItems = ArrayList<T>()
-        val mergeItems = ArrayList(mItems!!)
-        mergeItems.add(if (position < 0) 0 else if (position > mItems!!.size)  mItems!!.size else position, item)
+        val mergeItems = ArrayList(mItems?: ArrayList<T>())
+        mergeItems.add(if (position < 0) 0 else if (position > itemCount)  itemCount else position, item)
         mItems = mergeItems
     }
 
     fun clear() {
-        if (mItems != null) mItems!!.clear()
+        mItems?.clear()
     }
 
 }

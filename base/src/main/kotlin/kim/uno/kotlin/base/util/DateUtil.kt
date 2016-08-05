@@ -4,45 +4,51 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-private val DEFAULT_FORMAT = "yyyyMMddHHmmssSSS"
+object DateUtil {
 
-fun parse(date: String?, fromFormat: String = DEFAULT_FORMAT): Date? {
-    if (date == null || date.trim { it <= ' ' }.length == 0) return null
+    private val DEFAULT_FORMAT = "yyyyMMddHHmmssSSS"
 
-    try {
-        val simpleDateFormat = SimpleDateFormat(fromFormat)
-        return simpleDateFormat.parse(date)
-    } catch (e: ParseException) {
-        logE(e)
+    @JvmStatic
+    fun parse(date: String?, fromFormat: String = DEFAULT_FORMAT): Date? {
+        if (date == null || date.trim { it <= ' ' }.length == 0) return null
+
+        try {
+            val simpleDateFormat = SimpleDateFormat(fromFormat)
+            return simpleDateFormat.parse(date)
+        } catch (e: ParseException) { }
+
+        return null
     }
 
-    return null
-}
-
-fun format(date: String, toFormat: String): String? {
-    return format(date, DEFAULT_FORMAT, toFormat)
-}
-
-fun format(date: String, fromFormat: String, toFormat: String): String? {
-    return format(parse(date, fromFormat), toFormat)
-}
-
-fun format(date: Date?, toFormat: String): String? {
-    if (date == null) return null
-
-    try {
-        val simpleDateFormat = SimpleDateFormat(toFormat, Locale.KOREA)
-        return simpleDateFormat.format(date)
-    } catch (e: ParseException) {
-        logE(e)
+    @JvmStatic
+    fun format(date: String, toFormat: String): String? {
+        return format(date, DEFAULT_FORMAT, toFormat)
     }
 
-    return null
-}
+    @JvmStatic
+    fun format(date: String, fromFormat: String, toFormat: String): String? {
+        return format(parse(date, fromFormat), toFormat)
+    }
 
-val now: String?
-    get() = getNow(DEFAULT_FORMAT)
+    @JvmStatic
+    fun format(date: Date?, toFormat: String): String? {
+        if (date == null) return null
 
-fun getNow(toFormat: String): String? {
-    return format(Date(), toFormat)
+        try {
+            val simpleDateFormat = SimpleDateFormat(toFormat, Locale.KOREA)
+            return simpleDateFormat.format(date)
+        } catch (e: ParseException) { }
+
+        return null
+    }
+
+    @JvmStatic
+    val now: String?
+        get() = getNow(DEFAULT_FORMAT)
+
+    @JvmStatic
+    fun getNow(toFormat: String): String? {
+        return format(Date(), toFormat)
+    }
+
 }

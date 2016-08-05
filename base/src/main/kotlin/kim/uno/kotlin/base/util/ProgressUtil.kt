@@ -4,46 +4,53 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
 
-private var mProgressDialog: ProgressDialog? = null
-private var mPreMessage: String? = null
+object ProgressUtil {
 
-val isShowing: Boolean = mProgressDialog!!.isShowing
+    private var mProgressDialog: ProgressDialog? = null
+    private var mPreMessage: String? = null
 
-fun showProgress(context: Context, message: Int) = showProgress(context, context.getString(message))
+    val isShowing: Boolean = mProgressDialog?.isShowing?: false
 
-fun showProgress(context: Context, message: String = "Loading...", isCancelable: Boolean = false) {
-    if (isShowing) {
-        if (mPreMessage != message) {
+    @JvmStatic
+    fun show(context: Context, message: Int) = show(context, context.getString(message))
+
+    @JvmStatic
+    fun show(context: Context, message: String = "Loading...", isCancelable: Boolean = false) {
+        if (isShowing) {
+            if (mPreMessage != message) {
+                mPreMessage = message
+
+                // 재사용 가능
+                if (context is Activity) {
+                    context.runOnUiThread(Runnable { mProgressDialog?.setMessage(message) })
+
+                    // 재사용이 불가능
+                } else {
+                    mProgressDialog?.dismiss()
+                    show(context, message)
+                }
+            }
+        } else {
+            mProgressDialog = ProgressDialog(context)
             mPreMessage = message
 
-            // 재사용 가능
-            if (context is Activity) {
-                context.runOnUiThread(Runnable { mProgressDialog!!.setMessage(message) })
+            mProgressDialog = if (mProgressDialog == null) ProgressDialog(context) else mProgressDialog
+            mProgressDialog?.setMessage(message)
+            mProgressDialog?.setCancelable(isCancelable)
 
-                // 재사용이 불가능
+            if (context is Activity) {
+                context.runOnUiThread(Runnable { mProgressDialog?.show() })
             } else {
-                mProgressDialog!!.dismiss()
-                showProgress(context, message)
+                mProgressDialog?.show()
             }
         }
-    } else {
-        mProgressDialog = ProgressDialog(context)
-        mPreMessage = message
-
-        mProgressDialog = if (mProgressDialog == null) ProgressDialog(context) else mProgressDialog
-        mProgressDialog!!.setMessage(message)
-        mProgressDialog!!.setCancelable(isCancelable)
-
-        if (context is Activity) {
-            context.runOnUiThread(Runnable { mProgressDialog!!.show() })
-        } else {
-            mProgressDialog!!.show()
-        }
     }
-}
 
-fun dismissProgress() {
-    mProgressDialog!!.dismiss()
-    mProgressDialog = null
-    mPreMessage = null
+    @JvmStatic
+    fun dismiss() {
+        mProgressDialog?.dismiss()
+        mProgressDialog = null
+        mPreMessage = null
+    }
+
 }

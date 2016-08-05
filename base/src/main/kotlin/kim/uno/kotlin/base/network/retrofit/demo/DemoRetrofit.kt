@@ -1,7 +1,7 @@
-package kim.uno.kotlin.base.network.demo
+package kim.uno.kotlin.base.network.retrofit.demo
 
-import kim.uno.kotlin.base.network.BaseRetrofit
 import kim.uno.kotlin.base.network.Params
+import kim.uno.kotlin.base.network.retrofit.BaseRetrofit
 
 class DemoRetrofit(api: DemoApi) : BaseRetrofit<DemoApi>(api, DemoApi::class.java) {
 

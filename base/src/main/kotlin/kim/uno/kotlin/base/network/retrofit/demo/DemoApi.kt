@@ -1,4 +1,4 @@
-package kim.uno.kotlin.base.network.demo
+package kim.uno.kotlin.base.network.retrofit.demo
 
 import kim.uno.kotlin.base.network.Params
 import retrofit2.http.GET
