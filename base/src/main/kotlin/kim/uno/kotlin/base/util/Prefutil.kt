@@ -12,9 +12,9 @@ class PrefUtil private constructor(context: Context) {
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.base_app_name), Context.MODE_APPEND)
     }
 
-    fun getString(key: String) = getString(key, null)
+    fun getString(key: String) = getString(key, "")
 
-    fun getString(key: String, defValue: String?): String = sharedPreferences.getString(key, defValue)
+    fun getString(key: String, defValue: String): String = sharedPreferences.getString(key, defValue)
 
     fun getBoolean(key: String) = getBoolean(key, false)
 
