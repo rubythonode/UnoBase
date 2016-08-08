@@ -9,7 +9,13 @@ object ToastUtil {
     private var toast: Toast? = null
 
     @JvmStatic
-    fun show(context: Context, message: Int, duration: Int = Toast.LENGTH_SHORT) {
+    fun show(context: Context, message: Int) = show(context, message, Toast.LENGTH_SHORT)
+
+    @JvmStatic
+    fun show(context: Context, message: String) = show(context, message, Toast.LENGTH_SHORT)
+
+    @JvmStatic
+    fun show(context: Context, message: Int, duration: Int) {
         show(context, context.getString(message), duration)
     }
 

@@ -17,13 +17,13 @@ open class BaseRecyclerView : RecyclerView {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
 
-    fun setTopIndicator(view: View) {
+    open fun setTopIndicator(view: View) {
         mTopIndicator = view
         mTopIndicator?.setOnClickListener { scrollToTop(true) }
         updateTopIndicator()
     }
 
-    fun scrollToTop(isSmoothScroll: Boolean) = if (isSmoothScroll) smoothScrollToPosition(0) else scrollToPosition(0)
+    open fun scrollToTop(isSmoothScroll: Boolean) = if (isSmoothScroll) smoothScrollToPosition(0) else scrollToPosition(0)
 
     override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
         super.onScrollChanged(l, t, oldl, oldt)
@@ -43,7 +43,7 @@ open class BaseRecyclerView : RecyclerView {
         setTopIndicatorVisibility(isVisible)
     }
 
-    fun setTopIndicatorVisibility(isVisible: Boolean) {
+    open fun setTopIndicatorVisibility(isVisible: Boolean) {
         if (mTopIndicator == null) return
         var indicator = mTopIndicator as View
 

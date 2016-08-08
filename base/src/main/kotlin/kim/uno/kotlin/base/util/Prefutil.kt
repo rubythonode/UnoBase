@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import kim.uno.base.R
 
-class PrefUtil constructor(context: Context) {
+class PrefUtil private constructor(context: Context) {
 
     private val sharedPreferences: SharedPreferences
 

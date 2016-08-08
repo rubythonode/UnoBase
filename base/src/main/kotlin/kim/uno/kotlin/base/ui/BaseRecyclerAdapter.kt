@@ -26,38 +26,37 @@ abstract class BaseRecyclerAdapter<T : RecyclerItem>(val context: Context) : Rec
 
     fun getItem(position: Int): T? = mItems?.getOrNull(position)
 
-    fun setItems(items: ArrayList<T>) = setItems(items, true)
+    fun setItems(items: ArrayList<T>?) = setItems(items, true)
 
-    open fun setItems(items: ArrayList<T>, notify: Boolean) {
+    open fun setItems(items: ArrayList<T>?, notify: Boolean) {
         mItems = items
         if (notify) {
             notifyDataSetChanged()
         }
     }
 
-    fun addItems(items: ArrayList<T>) = addItems(items, Integer.MAX_VALUE)
+    fun addItems(items: ArrayList<T>?) = addItems(items, Integer.MAX_VALUE)
 
-    fun addItems(items: ArrayList<T>, notify: Boolean) = addItems(items, Integer.MAX_VALUE, notify)
+    fun addItems(items: ArrayList<T>?, notify: Boolean) = addItems(items, Integer.MAX_VALUE, notify)
 
-    fun addItems(items: ArrayList<T>, position: Int) = addItems(items, position, true)
+    fun addItems(items: ArrayList<T>?, position: Int) = addItems(items, position, true)
 
-    open fun addItems(items: ArrayList<T>, position: Int, notify: Boolean) {
-        if (mItems == null) mItems = ArrayList<T>()
-
+    open fun addItems(items: ArrayList<T>?, position: Int, notify: Boolean) {
+        if (items?.size?: 0 == 0) return
         val mergeItems = ArrayList(mItems?: ArrayList<T>())
-        mergeItems.addAll(if (position < 0) 0 else if (position > itemCount) itemCount else position, items)
+        mergeItems.addAll(Math.max(0, Math.min(position, itemCount)), items!!)
         mItems = mergeItems
         if (notify) {
             notifyItemRangeInserted(itemCount - items.size, itemCount)
         }
     }
 
-    fun addItem(item: T) = addItem(item, Integer.MAX_VALUE)
+    fun addItem(item: T?) = addItem(item, Integer.MAX_VALUE)
 
-    open fun addItem(item: T, position: Int) {
-        if (mItems == null) mItems = ArrayList<T>()
+    open fun addItem(item: T?, position: Int) {
+        if (item == null) return
         val mergeItems = ArrayList(mItems?: ArrayList<T>())
-        mergeItems.add(if (position < 0) 0 else if (position > itemCount)  itemCount else position, item)
+        mergeItems.add(Math.max(0, Math.min(position, itemCount)), item)
         mItems = mergeItems
     }
 

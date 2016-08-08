@@ -87,15 +87,13 @@ object IoUtil {
 
     @JvmStatic
     fun getMD5Hash(s: String): String? {
-        var m: MessageDigest? = null
         var hash: String? = null
 
         try {
-            m = MessageDigest.getInstance("MD5")
+            var m: MessageDigest? = MessageDigest.getInstance("MD5")
             m?.update(s.toByteArray(), 0, s.length)
-            hash = BigInteger(1, m.digest()).toString(16)
-        } catch (e: Exception) {
-        }
+            hash = BigInteger(1, m?.digest()).toString(16)
+        } catch (e: Exception) { }
 
         return hash
     }

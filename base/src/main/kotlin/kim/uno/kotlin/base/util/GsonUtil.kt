@@ -10,12 +10,13 @@ object GsonUtil {
     val gson: Gson = GsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT).create()
 
     @JvmStatic
-    fun toJson(obj: Any): String {
-        return gson.toJson(obj)
+    fun toJson(obj: Any?): String? {
+        obj?.let { return gson.toJson(obj) }
+        return null
     }
 
     @JvmStatic
-    fun <E> fromJson(json: String, cls: Class<E>) : E {
+    fun <E> fromJson(json: String, cls: Class<E>?) : E {
         return gson.fromJson(json, cls)
     }
 }
