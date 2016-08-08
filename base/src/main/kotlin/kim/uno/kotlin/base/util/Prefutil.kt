@@ -12,15 +12,25 @@ class PrefUtil private constructor(context: Context) {
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.base_app_name), Context.MODE_APPEND)
     }
 
-    fun getString(key: String, defValue: String? = null): String = sharedPreferences.getString(key, defValue)
+    fun getString(key: String) = getString(key, null)
 
-    fun getBoolean(key: String, defValue: Boolean = false): Boolean = sharedPreferences.getBoolean(key, defValue)
+    fun getString(key: String, defValue: String?): String = sharedPreferences.getString(key, defValue)
 
-    fun getFloat(key: String, defValue: Float = 0f): Float = sharedPreferences.getFloat(key, defValue)
+    fun getBoolean(key: String) = getBoolean(key, false)
 
-    fun getInt(key: String, defValue: Int = 0): Int = sharedPreferences.getInt(key, defValue)
+    fun getBoolean(key: String, defValue: Boolean): Boolean = sharedPreferences.getBoolean(key, defValue)
 
-    fun getLong(key: String, defValue: Long = 0): Long = sharedPreferences.getLong(key, defValue)
+    fun getFloat(key: String) = getFloat(key, 0f)
+
+    fun getFloat(key: String, defValue: Float): Float = sharedPreferences.getFloat(key, defValue)
+
+    fun getInt(key: String) = getInt(key, 0)
+
+    fun getInt(key: String, defValue: Int): Int = sharedPreferences.getInt(key, defValue)
+
+    fun getLong(key: String) = getLong(key, 0)
+
+    fun getLong(key: String, defValue: Long): Long = sharedPreferences.getLong(key, defValue)
 
     fun put(key: String, value: Any): Boolean {
         val editor = sharedPreferences.edit()
