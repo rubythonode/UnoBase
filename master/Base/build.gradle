@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
-def releaseVersion = '1.0.8'
+def releaseVersion = '1.0.9'
 group = 'kim.uno.base'
 version = releaseVersion
 
