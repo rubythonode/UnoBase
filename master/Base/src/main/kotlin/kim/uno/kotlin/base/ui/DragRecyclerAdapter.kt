@@ -38,8 +38,8 @@ abstract class DragRecyclerAdapter<T : RecyclerItem>(context: Context, recyclerV
     }
 
     fun onItemSwap(source: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-        if (source is DragViewHolder<*> && (source as DragViewHolder<*>).isSwapable
-                && target is DragViewHolder<*> && (target as DragViewHolder<*>).isSwapable) {
+        if (source is DragViewHolder<*> && (source as DragViewHolder<*>).isSwapable()
+                && target is DragViewHolder<*> && (target as DragViewHolder<*>).isSwapable()) {
             val sourcePosition = source.adapterPosition
             val targetPosition = target.adapterPosition
             val from = if (sourcePosition < targetPosition) sourcePosition else targetPosition

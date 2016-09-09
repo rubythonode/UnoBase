@@ -16,8 +16,8 @@ abstract class DragViewHolder<T : RecyclerItem> : BaseViewHolder<T>, View.OnTouc
 
     override fun onBindView(item: T?, position: Int) {
         super.onBindView(item, position)
-        if (handleView != null) {
-            handleView!!.setOnTouchListener(if (isSwapable) this else null)
+        if (getHandleView() != null) {
+            getHandleView()!!.setOnTouchListener(if (isSwapable()) this else null)
         }
     }
 
@@ -28,13 +28,12 @@ abstract class DragViewHolder<T : RecyclerItem> : BaseViewHolder<T>, View.OnTouc
         return false
     }
 
-    fun onSelectedChanged(isSelected: Boolean) {
+    open fun onSelectedChanged(isSelected: Boolean) {
+
     }
 
-    val handleView: View?
-        get() = null
+    abstract fun getHandleView(): View?
 
-    val isSwapable: Boolean
-        get() = true
+    open fun isSwapable(): Boolean = true
 
 }
