@@ -6,9 +6,9 @@ import kim.uno.kotlin.base.item.RecyclerItem
 
 abstract class ScrollChangedViewHolder<T : RecyclerItem> : BaseViewHolder<T> {
 
-    constructor(adapter: BaseRecyclerAdapter<T>, itemView: View) : super(adapter, itemView) { }
+    constructor(adapter: BaseRecyclerAdapter<*>, itemView: View) : super(adapter, itemView) { }
 
-    constructor(adapter: BaseRecyclerAdapter<T>, parent: ViewGroup, resId: Int) : super(adapter, parent, resId) { }
+    constructor(adapter: BaseRecyclerAdapter<*>, parent: ViewGroup, resId: Int) : super(adapter, parent, resId) { }
 
     open fun onScrollChanged(position: Float, dx: Int, dy: Int) { }
 

@@ -8,10 +8,10 @@ import kim.uno.kotlin.base.item.RecyclerItem
 
 abstract class DragViewHolder<T : RecyclerItem> : BaseViewHolder<T>, View.OnTouchListener {
 
-    constructor(adapter: BaseRecyclerAdapter<T>, parent: ViewGroup, resId: Int) : super(adapter, parent, resId) {
+    constructor(adapter: BaseRecyclerAdapter<*>, parent: ViewGroup, resId: Int) : super(adapter, parent, resId) {
     }
 
-    constructor(adapter: BaseRecyclerAdapter<T>, itemView: View) : super(adapter, itemView) {
+    constructor(adapter: BaseRecyclerAdapter<*>, itemView: View) : super(adapter, itemView) {
     }
 
     override fun onBindView(item: T?, position: Int) {
