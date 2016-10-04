@@ -16,6 +16,6 @@ abstract class BaseViewHolder<T : RecyclerItem>(open val adapter: BaseRecyclerAd
     }
 
     protected val context: Context = adapter.context
-    open fun getItem(): RecyclerItem? = adapter.getItem(adapterPosition)
+    open fun getItem(): T? = adapter.getItem(adapterPosition) as T?
 
 }

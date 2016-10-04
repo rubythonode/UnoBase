@@ -14,7 +14,7 @@ class SampleHolder(adapter: BaseRecyclerAdapter<*>, parent: ViewGroup) : BaseVie
     init {
         tvSample = itemView.findViewById(R.id.tv_sample) as TextView
 
-        itemView.setOnClickListener { view -> ToastUtil.show(context, "getAdapterPosition -> " + adapterPosition) }
+        itemView.setOnClickListener { view -> ToastUtil.show(context, "getAdapterPosition -> " + getItem()?.message) }
     }
 
     override fun onBindView(item: Sample?, position: Int) {
