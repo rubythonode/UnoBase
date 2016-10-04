@@ -9,6 +9,10 @@ public class Sample implements RecyclerItem {
 
     public String message;
 
+    public Sample(String message) {
+        this.message = message;
+    }
+
     @Override
     public int getViewType() {
         return 0;

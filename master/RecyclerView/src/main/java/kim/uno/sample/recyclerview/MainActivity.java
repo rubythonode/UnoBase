@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerSample.setAdapter(adapter);
 
         for (int i = 0; i < 20; i++) {
-            adapter.addItem(new Sample());
+            adapter.addItem(new Sample("sample position " + (i + 1)));
         }
 
         adapter.notifyDataSetChanged();
