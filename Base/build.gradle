@@ -1,0 +1,77 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+def releaseVersion = '1.1.2'
+group = 'kim.uno.base'
+version = releaseVersion
+
+bintray {
+    user = 'ikmuwn'
+    key = '33f652b135520009d11fd8921aaf9d44e68a7328'
+    configurations = ['archives']
+
+    pkg {
+        repo = 'maven'
+        name = 'base' // the name of the package in BinTray
+
+        version {
+            name = releaseVersion // the name of your library project
+            desc = releaseVersion
+            vcsTag = releaseVersion // the version
+        }
+
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/uno-dos/UnoBase.git' // your GitHub repo
+        websiteUrl = 'https://github.com/uno-dos/UnoBase' // your website or whatever has documentation
+    }
+}
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName releaseVersion
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    useLibrary  'org.apache.http.legacy'
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // support
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:recyclerview-v7:24.2.1'
+    compile 'com.android.support:support-v4:24.2.1'
+
+    // glide
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    // gson
+    compile 'com.google.code.gson:gson:2.6.2'
+
+    // kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // rx java
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
+
+    // volley
+    compile 'com.android.volley:volley:1.0.0'
+}
