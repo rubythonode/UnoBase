@@ -18,9 +18,17 @@ open class BaseRecyclerView : RecyclerView {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
 
+    init {
+        addOnScrollListener(object: OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                adapter.notifyScrollChanged(dx, dy)
+            }
+        })
+    }
+
     override fun onScrollChanged(nx: Int, ny: Int, ox: Int, oy: Int) {
         super.onScrollChanged(nx, ny, ox, oy)
-        adapter.notifyScrollChanged(nx - ox, ny - oy)
         invalidateScrollToTopButton()
     }
 

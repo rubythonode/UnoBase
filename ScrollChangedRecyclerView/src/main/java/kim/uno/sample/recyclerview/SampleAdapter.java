@@ -24,6 +24,5 @@ public class SampleAdapter extends BaseRecyclerAdapter {
     @Override
     public void onViewAttachedToWindow(@Nullable BaseViewHolder holder) {
         super.onViewAttachedToWindow(holder);
-        LogUtil.i("onViewAttachedToWindow " + holder.getAdapterPosition());
     }
 }

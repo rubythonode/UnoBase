@@ -1,6 +1,7 @@
 package kim.uno.kotlin.base.ui
 
 import android.support.v4.util.ArrayMap
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import kim.uno.kotlin.base.item.RecyclerItem
@@ -77,10 +78,11 @@ abstract class BaseRecyclerAdapter<T : RecyclerItem>() : RecyclerView.Adapter<Ba
     fun notifyScrollChanged(dx: Int, dy: Int) {
         if (attachedHolders.values.size > 0) {
             attachedHolders.values.map {
-                val offset = it.itemView.top
-                val parentHeight: Float = (recyclerView?.height ?: 0).toFloat()
-                val scrollFactor : Float = (offset) / parentHeight
-                it.onScrollChanged(scrollFactor, dx, dy)
+                val layoutManager = recyclerView?.layoutManager
+                val isHorizontal = layoutManager is LinearLayoutManager && layoutManager.orientation == LinearLayoutManager.HORIZONTAL
+                val offset = if (isHorizontal) it.itemView.left else it.itemView.top
+                var parentSize: Float = ((if (isHorizontal) recyclerView?.width else recyclerView?.height)?: 0).toFloat()
+                it.onScrollChanged(offset / parentSize, dx, dy)
             }
         }
     }

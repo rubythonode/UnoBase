@@ -1,5 +1,7 @@
 package kim.uno.sample.recyclerview;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -16,7 +18,8 @@ import kim.uno.kotlin.base.util.DisplayUtil;
 
 public class SampleHolder extends BaseViewHolder<Sample> {
 
-    int scrollMargin;
+    boolean isHorizontal;
+    int scrollMargin = DisplayUtil.getPixelFromDp(getContext(), 120);
 
     RelativeLayout rlContent;
     ImageView ivContent;
@@ -28,8 +31,26 @@ public class SampleHolder extends BaseViewHolder<Sample> {
         ivContent = (ImageView) itemView.findViewById(R.id.iv_content);
         tvContent = (TextView) itemView.findViewById(R.id.tv_content);
 
-        scrollMargin = Math.abs(((ViewGroup.MarginLayoutParams) ivContent.getLayoutParams()).topMargin);
-        rlContent.getLayoutParams().height = DisplayUtil.getWidth(getContext()) - itemView.getPaddingLeft() - itemView.getPaddingRight();
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) ivContent.getLayoutParams();
+
+        RecyclerView.LayoutManager layoutManager = adapter.getRecyclerView().getLayoutManager();
+        isHorizontal = layoutManager instanceof LinearLayoutManager && ((LinearLayoutManager) layoutManager).getOrientation() == LinearLayoutManager.HORIZONTAL;
+        if (isHorizontal) {
+            params.leftMargin = -scrollMargin;
+            params.rightMargin = -scrollMargin;
+
+            int width = DisplayUtil.getWidth(getContext()) / 2;
+            rlContent.getLayoutParams().width = width;
+            rlContent.getLayoutParams().height = width;
+        } else {
+            params.topMargin = -scrollMargin;
+            params.bottomMargin = -scrollMargin;
+
+            int width = DisplayUtil.getWidth(getContext()) - itemView.getPaddingLeft() - itemView.getPaddingRight();
+            rlContent.getLayoutParams().width = width;
+            rlContent.getLayoutParams().height = width;
+        }
+
     }
 
     @Override
@@ -41,8 +62,13 @@ public class SampleHolder extends BaseViewHolder<Sample> {
     @Override
     public void onScrollChanged(float position, int dx, int dy) {
         super.onScrollChanged(position, dx, dy);
-        ivContent.setTranslationY(scrollMargin - (scrollMargin * position));
-        tvContent.setTranslationY(dy);
+        if (isHorizontal) {
+            ivContent.setTranslationX(scrollMargin - (scrollMargin * position));
+            tvContent.setTranslationX(dx);
+        } else {
+            ivContent.setTranslationY(scrollMargin - (scrollMargin * position));
+            tvContent.setTranslationY(dy);
+        }
     }
 
 }

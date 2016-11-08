@@ -12,7 +12,7 @@
  - `DragRecyclerAdapter` drag & drop 데이터 처리(top/bottom swap limit, state 중계)
  - `RecyclerItem` row type 반환을 위한 모델 interface
 
-  ![gif_recyclerview_dragable] ![gif_recyclerview_scroll_offset_animation]
+  ![gif_recyclerview_dragable] ![gif_recyclerview_scroll_animation] ![gif_recyclerview_scroll_fling_vertical] ![gif_recyclerview_scroll_fling_horizontal]
 
 - Volley
  - `VolleyRequester` Volley 사용 간소화 코드
@@ -50,4 +50,6 @@ limitations under the License.
 ```
 
 [gif_recyclerview_dragable]: resources/gif_recyclerview_dragable.gif
-[gif_recyclerview_scroll_offset_animation]: resources/gif_recyclerview_scroll_offset_animation.gif
+[gif_recyclerview_scroll_animation]: resources/gif_recyclerview_scroll_animation.gif
+[gif_recyclerview_scroll_fling_vertical]: resources/gif_recyclerview_scroll_fling_vertical.gif
+[gif_recyclerview_scroll_fling_horizontal]: resources/gif_recyclerview_scroll_fling_horizontal.gif
