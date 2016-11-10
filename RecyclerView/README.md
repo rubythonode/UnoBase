@@ -9,7 +9,7 @@ image:
 image-sm:
 ---
 
-##### RecyclerView 사용 간소화를 위한 기반 코드 작성
+## RecyclerView 사용 간소화를 위한 기반 코드 작성
 
 ##### XML
 ```
