@@ -75,4 +75,4 @@ public class SampleHolder extends BaseViewHolder<Sample> implements BaseDragView
 }
 ```
 
-[gif_recyclerview_dragable]: ../resources/gif_recyclerview_dragable.gif
+[gif_recyclerview_dragable]: https://github.com/uno-dos/UnoBase/blob/master/_resources/gif_recyclerview_dragable.gif

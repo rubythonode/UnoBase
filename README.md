@@ -49,7 +49,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-[gif_recyclerview_dragable]: resources/gif_recyclerview_dragable.gif
-[gif_recyclerview_scroll_animation]: resources/gif_recyclerview_scroll_animation.gif
-[gif_recyclerview_scroll_fling_vertical]: resources/gif_recyclerview_scroll_fling_vertical.gif
-[gif_recyclerview_scroll_fling_horizontal]: resources/gif_recyclerview_scroll_fling_horizontal.gif
+[gif_recyclerview_dragable]: https://github.com/uno-dos/UnoBase/blob/master/_resources/gif_recyclerview_dragable.gif
+[gif_recyclerview_scroll_animation]: https://github.com/uno-dos/UnoBase/blob/master/_resources/gif_recyclerview_scroll_animation.gif
+[gif_recyclerview_scroll_fling_vertical]: https://github.com/uno-dos/UnoBase/blob/master/_resources/gif_recyclerview_scroll_fling_vertical.gif
+[gif_recyclerview_scroll_fling_horizontal]: https://github.com/uno-dos/UnoBase/blob/master/_resources/gif_recyclerview_scroll_fling_horizontal.gif

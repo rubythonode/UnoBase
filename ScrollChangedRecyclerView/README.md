@@ -29,7 +29,7 @@ public void onScrollChanged(float position, int dx, int dy) {
 }
 ```
 
+[gif_recyclerview_scroll_animation]: https://github.com/uno-dos/UnoBase/blob/master/_resources/gif_recyclerview_scroll_animation.gif
+[gif_recyclerview_scroll_fling_vertical]: https://github.com/uno-dos/UnoBase/blob/master/_resources/gif_recyclerview_scroll_fling_vertical.gif
+[gif_recyclerview_scroll_fling_horizontal]: https://github.com/uno-dos/UnoBase/blob/master/_resources/gif_recyclerview_scroll_fling_horizontal.gif
 
-[gif_recyclerview_scroll_animation]: ../resources/gif_recyclerview_scroll_animation.gif
-[gif_recyclerview_scroll_fling_vertical]: ../resources/gif_recyclerview_scroll_fling_vertical.gif
-[gif_recyclerview_scroll_fling_horizontal]: ../resources/gif_recyclerview_scroll_fling_horizontal.gif
