@@ -9,7 +9,7 @@ image: https://github.com/uno-dos/UnoBase/blob/master/_resources/gif_recyclervie
 image-sm: https://github.com/uno-dos/UnoBase/blob/master/_resources/gif_recyclerview_scroll_fling_vertical.gif
 ---
 
-## 코틀린으로 작성된 라이브러리 프로젝트이며 자바 범용을 지향합니다.
+## `KOTLIN` 작성된 라이브러리 프로젝트이며 자바 범용을 지향합니다.
 
 ##### RecyclerView 베이스 코드
  - `BaseRecyclerView` scrollToTopButton, scroll fling animation, adapter recyclerView 중계 역할
