@@ -11,7 +11,7 @@ image-sm:
 
 ## RecyclerView 사용 간소화를 위한 기반 코드 작성
 
-##### XML
+## XML
 ```
 <kim.uno.kotlin.base.ui.BaseRecyclerView
     android:id="@+id/recycler_sample"
@@ -19,8 +19,8 @@ image-sm:
     android:layout_height="match_parent" />
 ```
 
-##### JAVA
-implements `RecyclerItem` : View holder type 반환을 위한 Interface
+## JAVA
+##### implements `RecyclerItem` : View holder type 반환을 위한 Interface
 
 ```
 public class Sample implements RecyclerItem {
@@ -40,7 +40,7 @@ public class Sample implements RecyclerItem {
 
 ```
 
-extends `BaseRecyclerAdapter` : 데이터 type(implements RecyclerItem) 분기를 통한 홀더 생성 및 Bind 간소화
+##### extends `BaseRecyclerAdapter` : 데이터 type(implements RecyclerItem) 분기를 통한 홀더 생성 및 Bind 간소화
 
 ```
 public class SampleAdapter extends BaseRecyclerAdapter {
@@ -69,7 +69,7 @@ public class SampleAdapter extends BaseRecyclerAdapter {
 
 ```
 
-extends `BaseViewHolder` : inflate 구문 간소화 및 Generics 문법으로 position에 해당하는 객체를 onBindView 에 직접 전달
+##### extends `BaseViewHolder` : inflate 구문 간소화 및 Generics 문법으로 position에 해당하는 객체를 onBindView 에 직접 전달
 
 ```
 public class SampleHolder extends BaseViewHolder<Sample> {
@@ -89,7 +89,7 @@ public class SampleHolder extends BaseViewHolder<Sample> {
 }
 ```
 
-ROW의 추가 (`addItem, addItems, setItems`)
+##### ROW의 추가 (`addItem, addItems, setItems`)
 
 ```
 public class MainActivity extends AppCompatActivity {

@@ -23,8 +23,7 @@ ROW 단위로 Swap enable 조절구문 추가 및 스크롤 제한기능 추가
     android:layout_height="match_parent" />
 ```
 
-##### JAVA
-extends `DragRecyclerAdapter` : 핸들을 이용한 아이템 Swap 관련 코드 간소화
+##### extends `DragRecyclerAdapter` : 핸들을 이용한 아이템 Swap 관련 코드 간소화
 
 ```
 public class SampleAdapter extends DragRecyclerAdapter {
@@ -42,7 +41,7 @@ public class SampleAdapter extends DragRecyclerAdapter {
 }
 ```
 
-implements `BaseDragView` : Drag 관련 handleView, swapable 조건, state 값을 전달할 interface
+##### implements `BaseDragView` : Drag 관련 handleView, swapable 조건, state 값을 전달할 interface
 
 ```
 public class SampleHolder extends BaseViewHolder<Sample> implements BaseDragView {
