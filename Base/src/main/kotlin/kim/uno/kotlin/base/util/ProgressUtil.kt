@@ -9,14 +9,15 @@ object ProgressUtil {
     private var mProgressDialog: ProgressDialog? = null
     private var mPreMessage: String? = null
 
-    val isShowing: Boolean = mProgressDialog?.isShowing?: false
+    @JvmStatic
+    fun isShowing(): Boolean = mProgressDialog?.isShowing?: false
 
     @JvmStatic
     fun show(context: Context, message: Int) = show(context, context.getString(message))
 
     @JvmStatic
     fun show(context: Context, message: String = "Loading...", isCancelable: Boolean = false) {
-        if (isShowing) {
+        if (isShowing()) {
             if (mPreMessage != message) {
                 mPreMessage = message
 

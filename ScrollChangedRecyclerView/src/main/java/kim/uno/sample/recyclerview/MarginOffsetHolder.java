@@ -1,7 +1,5 @@
 package kim.uno.sample.recyclerview;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -16,7 +14,7 @@ import kim.uno.kotlin.base.ui.BaseRecyclerAdapter;
 import kim.uno.kotlin.base.ui.BaseViewHolder;
 import kim.uno.kotlin.base.util.DisplayUtil;
 
-public class SampleHolder extends BaseViewHolder<Sample> {
+public class MarginOffsetHolder extends BaseViewHolder<Sample> {
 
     boolean isHorizontal;
     int scrollMargin = DisplayUtil.getPixelFromDp(getContext(), 120);
@@ -25,32 +23,27 @@ public class SampleHolder extends BaseViewHolder<Sample> {
     ImageView ivContent;
     TextView tvContent;
 
-    public SampleHolder(@NotNull BaseRecyclerAdapter adapter, @NotNull ViewGroup parent) {
+    public MarginOffsetHolder(@NotNull BaseRecyclerAdapter adapter, @NotNull ViewGroup parent) {
         super(adapter, parent, R.layout.item_sample);
         rlContent = (RelativeLayout) itemView.findViewById(R.id.rl_content);
         ivContent = (ImageView) itemView.findViewById(R.id.iv_content);
         tvContent = (TextView) itemView.findViewById(R.id.tv_content);
 
+        isHorizontal = getAdapter().isHorizontal();
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) ivContent.getLayoutParams();
-
-        RecyclerView.LayoutManager layoutManager = adapter.getRecyclerView().getLayoutManager();
-        isHorizontal = layoutManager instanceof LinearLayoutManager && ((LinearLayoutManager) layoutManager).getOrientation() == LinearLayoutManager.HORIZONTAL;
         if (isHorizontal) {
             params.leftMargin = -scrollMargin;
             params.rightMargin = -scrollMargin;
-
             int width = DisplayUtil.getWidth(getContext()) / 2;
             rlContent.getLayoutParams().width = width;
             rlContent.getLayoutParams().height = width;
         } else {
             params.topMargin = -scrollMargin;
             params.bottomMargin = -scrollMargin;
-
-            int width = DisplayUtil.getWidth(getContext()) - itemView.getPaddingLeft() - itemView.getPaddingRight();
+            int width = DisplayUtil.getWidth(getContext());
             rlContent.getLayoutParams().width = width;
             rlContent.getLayoutParams().height = width;
         }
-
     }
 
     @Override

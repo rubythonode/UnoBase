@@ -12,7 +12,12 @@ public class SampleAdapter extends BaseRecyclerAdapter {
     @NotNull
     @Override
     public BaseViewHolder onCreateNewHolder(@NotNull ViewGroup parent, int type) {
-        return new SampleHolder(this, parent);
+
+        // focus resize transition test
+        return new FocusResizeHolder(this, parent);
+
+        // imageView margin changed transition test
+//        return new MarginOffsetHolder(this, parent);
     }
 
 }
