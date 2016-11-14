@@ -12,10 +12,10 @@ image-sm: https://github.com/uno-dos/UnoBase/blob/master/_resources/gif_recycler
 ## `BaseRecyclerView`를 기반으로한 Drag & Drop 샘플 코드입니다.
 ROW 단위로 Swap enable 조절구문 추가 및 스크롤 제한기능 추가
 
-##### PREVIEW
+## PREVIEW
 ![gif_recyclerview_dragable]
 
-##### XML
+## XML
 ```
 <kim.uno.kotlin.base.ui.BaseRecyclerView
     android:id="@+id/recycler_sample"
@@ -23,6 +23,7 @@ ROW 단위로 Swap enable 조절구문 추가 및 스크롤 제한기능 추가
     android:layout_height="match_parent" />
 ```
 
+## JAVA
 ##### extends `DragRecyclerAdapter` : 핸들을 이용한 아이템 Swap 관련 코드 간소화
 
 ```

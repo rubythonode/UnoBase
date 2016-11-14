@@ -11,17 +11,18 @@ image-sm: https://github.com/uno-dos/UnoBase/blob/master/_resources/gif_recycler
 
 ## `BaseRecyclerView`를 기반으로한 스크롤 애니메이션, 플링효과 샘플코드입니다.
 
-##### PREVIEW
+## PREVIEW
 ![gif_recyclerview_scroll_animation] ![gif_recyclerview_scroll_fling_vertical] ![gif_recyclerview_scroll_fling_horizontal] ![gif_recyclerview_scroll_focus_resize]
 
-##### USE
-FLING
+## USE
+
+##### FLING
 
 ```
 recyclerSample.setEnableFling(true);
 ```
 
-MARGIN OFFSET ANIMATION
+##### MARGIN OFFSET ANIMATION
 
 ```
 MarginOffsetHolder.java
@@ -39,7 +40,7 @@ public void onScrollChanged(float position, int dx, int dy) {
 }
 ```
 
-FOCUS RESIZE ANIMATION
+##### FOCUS RESIZE ANIMATION
 
 ```
 FocusResizeHolder.java
