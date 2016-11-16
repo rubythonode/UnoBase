@@ -33,7 +33,7 @@ image-sm: https://github.com/uno-dos/UnoBase/blob/master/_resources/gif_recycler
 
 ## Requirements
 - Target Sdk Version : 24
-- Min Sdk Version : 15
+- Min Sdk Version : 17
 
 ## License
 ```
