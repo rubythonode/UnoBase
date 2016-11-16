@@ -52,16 +52,16 @@ public class MarginOffsetHolder extends BaseViewHolder<Sample> {
         Glide.with(getContext()).load(getContext().getString(R.string.sample_resource)).into(ivContent);
     }
 
-@Override
-public void onScrollChanged(float position, int dx, int dy) {
-    super.onScrollChanged(position, dx, dy);
-    if (isHorizontal) {
-        ivContent.setTranslationX(scrollMargin - (scrollMargin * position));
-        tvContent.setTranslationX(dx);
-    } else {
-        ivContent.setTranslationY(scrollMargin - (scrollMargin * position));
-        tvContent.setTranslationY(dy);
+    @Override
+    public void onScrollChanged(float position, int dx, int dy) {
+        super.onScrollChanged(position, dx, dy);
+        if (isHorizontal) {
+            ivContent.setTranslationX(scrollMargin - (scrollMargin * position));
+            tvContent.setTranslationX(dx);
+        } else {
+            ivContent.setTranslationY(scrollMargin - (scrollMargin * position));
+            tvContent.setTranslationY(dy);
+        }
     }
-}
 
 }
