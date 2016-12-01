@@ -1,4 +1,4 @@
-package kim.uno.sample.recyclerview;
+package kim.uno.sample.coordinatorlayout;
 
 import kim.uno.kotlin.base.item.RecyclerItem;
 

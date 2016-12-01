@@ -22,7 +22,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerSample.setAdapter(adapter);
 
         for (int i = 0; i < 20; i++) {
-            adapter.addItem(new Sample());
+            Sample item = new Sample();
+            item.message = "item position " + i;
+            item.image = getString(R.string.sample_resource);
+            adapter.addItem(item);
         }
 
         adapter.notifyDataSetChanged();

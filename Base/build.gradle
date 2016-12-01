@@ -60,6 +60,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.android.support:design:24.2.1'
 
     // glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
@@ -70,15 +71,6 @@ dependencies {
     // kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    // rx java
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.1.6'
-
     // volley
     compile 'com.android.volley:volley:1.0.0'
-
-    // retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.4.2'
 }

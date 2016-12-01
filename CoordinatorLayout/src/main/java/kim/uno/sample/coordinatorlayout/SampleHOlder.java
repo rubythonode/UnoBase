@@ -1,8 +1,7 @@
-package kim.uno.sample.recyclerview;
+package kim.uno.sample.coordinatorlayout;
 
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -14,18 +13,16 @@ import kim.uno.kotlin.base.ui.BaseRecyclerAdapter;
 import kim.uno.kotlin.base.ui.BaseViewHolder;
 import kim.uno.kotlin.base.util.DisplayUtil;
 
-public class MarginOffsetHolder extends BaseViewHolder<Sample> {
+public class SampleHolder extends BaseViewHolder<Sample> {
 
     boolean isHorizontal;
-    int scrollMargin = DisplayUtil.getPixelFromDp(getContext(), 120);
+    int scrollMargin = DisplayUtil.getPixelFromDp(getContext(), 0);
 
-    RelativeLayout rlContent;
     ImageView ivContent;
     TextView tvContent;
 
-    public MarginOffsetHolder(@NotNull BaseRecyclerAdapter adapter, @NotNull ViewGroup parent) {
+    public SampleHolder(@NotNull BaseRecyclerAdapter adapter, @NotNull ViewGroup parent) {
         super(adapter, parent, R.layout.item_sample);
-        rlContent = (RelativeLayout) itemView.findViewById(R.id.rl_content);
         ivContent = (ImageView) itemView.findViewById(R.id.iv_content);
         tvContent = (TextView) itemView.findViewById(R.id.tv_content);
 
@@ -35,15 +32,21 @@ public class MarginOffsetHolder extends BaseViewHolder<Sample> {
             params.leftMargin = -scrollMargin;
             params.rightMargin = -scrollMargin;
             int width = DisplayUtil.getWidth(getContext()) / 2;
-            rlContent.getLayoutParams().width = width;
-            rlContent.getLayoutParams().height = width;
+            itemView.getLayoutParams().width = width;
+            itemView.getLayoutParams().height = width;
         } else {
             params.topMargin = -scrollMargin;
             params.bottomMargin = -scrollMargin;
             int width = DisplayUtil.getWidth(getContext());
-            rlContent.getLayoutParams().width = width;
-            rlContent.getLayoutParams().height = width;
+            itemView.getLayoutParams().width = width;
+            itemView.getLayoutParams().height = width;
         }
+
+        itemView.setOnClickListener(v -> {
+            if (getContext() instanceof MainActivity) {
+                ((MainActivity) getContext()).show(getItem());
+            }
+        });
     }
 
     @Override
@@ -55,13 +58,13 @@ public class MarginOffsetHolder extends BaseViewHolder<Sample> {
     @Override
     public void onScrollChanged(float position, int dx, int dy) {
         super.onScrollChanged(position, dx, dy);
-        if (isHorizontal) {
-            ivContent.setTranslationX(scrollMargin - (scrollMargin * position));
-            tvContent.setTranslationX(dx);
-        } else {
-            ivContent.setTranslationY(scrollMargin - (scrollMargin * position));
-            tvContent.setTranslationY(dy);
-        }
+//        if (isHorizontal) {
+//            ivContent.setTranslationX(scrollMargin - (scrollMargin * position));
+//            tvContent.setTranslationX(dx);
+//        } else {
+//            ivContent.setTranslationY(scrollMargin - (scrollMargin * position));
+//            tvContent.setTranslationY(dy);
+//        }
     }
 
 }

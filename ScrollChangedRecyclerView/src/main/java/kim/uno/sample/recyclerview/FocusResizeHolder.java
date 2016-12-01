@@ -50,7 +50,7 @@ public class FocusResizeHolder extends BaseViewHolder<Sample> {
     @Override
     public void onBindView(@Nullable Sample item, int position) {
         super.onBindView(item, position);
-        Glide.with(getContext()).load(getContext().getString(R.string.sample_resource)).into(new SimpleTarget<GlideDrawable>(rlContent.getLayoutParams().width, rlContent.getLayoutParams().height) {
+        Glide.with(getContext()).load(item.image).into(new SimpleTarget<GlideDrawable>(rlContent.getLayoutParams().width, rlContent.getLayoutParams().height) {
             @Override
             public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
                 ivContent.setImageDrawable(resource);

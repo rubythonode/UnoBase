@@ -37,7 +37,7 @@ class AsyncHttpConnector(val context: Context, val url: String, val listener: On
             }
 
             if (listener != null) {
-                if (context is Activity) {
+                if (context is Activity && !context.isFinishing) {
                     (context).runOnUiThread {
                         listener!!.onResponse(builder.toString())
                     }
