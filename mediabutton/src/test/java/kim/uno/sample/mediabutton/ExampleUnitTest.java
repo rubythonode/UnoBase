@@ -1,4 +1,4 @@
-package kim.uno.sample.coordinatorlayout;
+package kim.uno.sample.mediabutton;
 
 import org.junit.Test;
 

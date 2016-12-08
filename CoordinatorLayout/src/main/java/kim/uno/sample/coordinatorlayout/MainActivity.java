@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     View vHeader;
     int headerHeight;
+    BaseRecyclerView recyclerSample;
 
     RelativeLayout rlBackground;
     BottomSheetBehavior bottomSheetBehavior;
@@ -28,14 +29,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BaseRecyclerView recyclerSample = (BaseRecyclerView) findViewById(R.id.recycler_sample);
+        recyclerSample = (BaseRecyclerView) findViewById(R.id.recycler_sample);
         recyclerSample.setScrollToTopButton(findViewById(R.id.rl_scroll_to_top));
         recyclerSample.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         SampleAdapter adapter = new SampleAdapter();
         recyclerSample.setAdapter(adapter);
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 1; i++) {
             Sample item = new Sample();
             item.message = "item position " + i;
             item.image = "http://www.dzimg.com/Dahong/201611/D697788_l.jpg";
@@ -63,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
         ivContent = (ImageView) findViewById(R.id.iv_content);
 
-
-        vHeader.post(() -> headerHeight = vHeader.getMeasuredHeight());
+        vHeader.post(() -> {
+            headerHeight = vHeader.getMeasuredHeight();
+            initRecyclerHeight();
+        });
 
         recyclerSample.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                if (dy > 0) dy *= 0.5f;
+//                if (dy > 0) dy *= 0.5f;
                 float translationY = Math.max(-headerHeight, Math.min(0, vHeader.getTranslationY() - dy));
 
 //                View v = recyclerSample != null && recyclerSample.getChildCount() > 0 ? recyclerSample.getChildAt(0) : null;
@@ -87,7 +90,21 @@ public class MainActivity extends AppCompatActivity {
                 vHeader.setTranslationY(translationY);
             }
         });
+    }
 
+    private void initRecyclerHeight() {
+        recyclerSample.setPadding(recyclerSample.getPaddingLeft(), headerHeight, recyclerSample.getPaddingRight(), recyclerSample.getPaddingBottom());
+        recyclerSample.post(() -> {
+
+            int height = 0;
+            for (int i = 0; i < recyclerSample.getChildCount(); i++) {
+                height += recyclerSample.getChildAt(i).getMeasuredHeight();
+            }
+
+            if (height < recyclerSample.getMeasuredHeight() + headerHeight) {
+                // TODO CHILD CONTAINER SIZE = recyclerSample.getMeasuredHeight() + headerHeight
+            }
+        });
     }
 
     public void show(Sample item) {
