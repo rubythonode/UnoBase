@@ -15,7 +15,7 @@ class SamplePagerAdapter(fm: FragmentManager?) : FragmentStatePagerAdapter(fm) {
             fragments.put(position, SampleFragment())
             fragments.get(position).arguments = Bundle()
             fragments.get(position).arguments.putString("testArg", "this position : " + position)
-            fragments.get(position).arguments.putString("custom key", "test message by custom key")
+            fragments.get(position).arguments.putString("argKey", "test message by custom key")
         }
 
         return fragments.get(position)
