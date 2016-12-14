@@ -18,12 +18,13 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="#000" />
+                android:background="#fff" />
 
             <RelativeLayout
+                android:id="@+id/rl_secondary_container"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="#fff" />
+                android:background="#73ba22" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -33,7 +34,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="#73ba22" />
+                android:background="#eeeeee" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

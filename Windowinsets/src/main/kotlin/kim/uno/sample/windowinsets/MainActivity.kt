@@ -1,7 +1,9 @@
 package kim.uno.sample.windowinsets
 
 import android.os.Bundle
+import android.support.v4.view.ViewCompat
 import android.support.v4.view.ViewPager
+import android.support.v4.view.WindowInsetsCompat
 import android.support.v7.app.AppCompatActivity
 import kim.uno.kotlin.base.util.LogUtil
 import kotlinx.android.synthetic.main.activity_main.*
@@ -10,13 +12,19 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     var adapter: SamplePagerAdapter? = null
+    var insets: WindowInsetsCompat? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         LogUtil.logEnable = true
-        initView()
+
+        ViewCompat.setOnApplyWindowInsetsListener(window.decorView, { v, insets ->
+            this.insets = insets
+            initView()
+            insets
+        })
     }
 
     fun initView() {
