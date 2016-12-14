@@ -1,4 +1,4 @@
-package kim.uno.cloudday.widget
+package kim.uno.kotlin.base.ui
 
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
