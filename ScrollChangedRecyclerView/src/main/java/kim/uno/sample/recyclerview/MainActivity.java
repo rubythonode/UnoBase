@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         BaseRecyclerView recyclerSample = (BaseRecyclerView) findViewById(R.id.recycler_sample);
         recyclerSample.setScrollToTopButton(findViewById(R.id.v_top));
         recyclerSample.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-//        recyclerSample.setFlingEnable(true);
+        recyclerSample.setFlingEnable(true, BaseRecyclerView.FlingGravity.START);
 
         SampleAdapter adapter = new SampleAdapter();
         recyclerSample.setAdapter(adapter);
