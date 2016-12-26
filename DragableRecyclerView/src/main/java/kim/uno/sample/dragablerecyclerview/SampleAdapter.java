@@ -9,10 +9,6 @@ import kim.uno.kotlin.base.ui.DragRecyclerAdapter;
 
 public class SampleAdapter extends DragRecyclerAdapter {
 
-    public SampleAdapter() {
-        super();
-    }
-
     @NotNull
     @Override
     public BaseViewHolder onCreateNewHolder(@NotNull ViewGroup parent, int type) {

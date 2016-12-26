@@ -19,7 +19,7 @@ image-sm: https://github.com/uno-dos/UnoBase/blob/master/_resources/gif_recycler
 ##### FLING
 
 ```
-recyclerSample.setEnableFling(true);
+recyclerSample.setFlingEnable(true);
 ```
 
 ##### MARGIN OFFSET ANIMATION

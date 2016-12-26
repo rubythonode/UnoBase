@@ -11,8 +11,13 @@ import kim.uno.kotlin.base.util.LogUtil
 
 open class BaseRecyclerView : RecyclerView {
 
+    enum class FlingGravity {
+        START, CENTER, END
+    }
+
     private var scrollToTopButton: View? = null
-    var enableFling: Boolean = false
+    var flingEnable: Boolean = false
+    var flingGravity: FlingGravity = FlingGravity.START
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
@@ -47,6 +52,11 @@ open class BaseRecyclerView : RecyclerView {
     }
 
     open fun scrollToTop(isSmoothScroll: Boolean) = if (isSmoothScroll) smoothScrollToPosition(0) else scrollToPosition(0)
+
+    open fun setFlingEnable(enable: Boolean, gravity: FlingGravity = FlingGravity.START) {
+        flingEnable = enable
+        flingGravity = gravity
+    }
 
     fun invalidateScrollToTopButton() {
         if (scrollToTopButton == null) return
@@ -95,28 +105,40 @@ open class BaseRecyclerView : RecyclerView {
     }
 
     override fun fling(velocityX: Int, velocityY: Int): Boolean {
-        if (enableFling && layoutManager is LinearLayoutManager) {
+        if (flingEnable && layoutManager is LinearLayoutManager) {
             val layoutManager = layoutManager as LinearLayoutManager
-            val firstVisibleView = layoutManager.findFirstVisibleItemPosition()
-            val lastVisibleView = layoutManager.findLastVisibleItemPosition()
-            val firstView = layoutManager.findViewByPosition(firstVisibleView)
-            val lastView = layoutManager.findViewByPosition(lastVisibleView)
+            val firstIndex = layoutManager.findFirstVisibleItemPosition()
+            val lastIndex = layoutManager.findLastVisibleItemPosition()
+            val firstView = layoutManager.findViewByPosition(firstIndex)
+            val lastView = layoutManager.findViewByPosition(lastIndex)
 
             // 횡스크롤
             if (layoutManager.orientation == RecyclerView.HORIZONTAL) {
-                val frontMargin = (measuredWidth - lastView.width) / 2
-                val endMargin = (measuredWidth - firstView.width) / 2 + firstView.width
-                val scrollDistanceFront = lastView.left - frontMargin
-                val scrollDistanceEnd = endMargin - firstView.right
-                if (velocityX > 0) smoothScrollBy(scrollDistanceFront, 0)
-                else smoothScrollBy(-scrollDistanceEnd, 0)
+
+                var offset = 0
+                when(flingGravity) {
+                    FlingGravity.START -> offset = 0
+                    FlingGravity.CENTER -> offset = (measuredWidth - lastView.width) / 2
+                    FlingGravity.END -> offset = measuredWidth - lastView.width
+                }
+
+                val frontMargin = offset
+                val endMargin = offset + firstView.width
+                if (velocityX > 0) smoothScrollBy(lastView.left - frontMargin, 0)
+                else smoothScrollBy(-(endMargin - firstView.right), 0)
             } else {
-                val frontMargin = (measuredHeight - lastView.height) / 2
-                val endMargin = (measuredHeight - firstView.height) / 2 + firstView.height
-                val scrollDistanceFront = lastView.top - frontMargin
-                val scrollDistanceEnd = endMargin - firstView.bottom
-                if (velocityY > 0) smoothScrollBy(0, scrollDistanceFront)
-                else smoothScrollBy(0, -scrollDistanceEnd)
+
+                var offset = 0
+                when(flingGravity) {
+                    FlingGravity.START -> offset = 0
+                    FlingGravity.CENTER -> offset = (measuredHeight - lastView.height) / 2
+                    FlingGravity.END -> offset = measuredHeight - lastView.height
+                }
+
+                val frontMargin = offset
+                val endMargin = offset + firstView.height
+                if (velocityY > 0) smoothScrollBy(0, lastView.top - frontMargin)
+                else smoothScrollBy(0, -(endMargin - firstView.bottom))
             }
 
             return true

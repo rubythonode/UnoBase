@@ -13,7 +13,7 @@ class SampleHolder(adapter: BaseRecyclerAdapter<*>, parent: ViewGroup) : BaseVie
     init {
         scrollMargin = Math.abs((itemView.iv_content.layoutParams as ViewGroup.MarginLayoutParams).topMargin)
 
-        val gridWidth = DisplayUtil.getWidth(context) / 2f - itemView.paddingLeft - itemView.paddingRight
+        val gridWidth = DisplayUtil.getWidth(context) * 0.7f - itemView.paddingLeft - itemView.paddingRight
         val gridHeight = gridWidth * (452f / 640f)
 
         itemView.rl_content.layoutParams.width = gridWidth.toInt()
